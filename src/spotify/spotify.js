@@ -1,5 +1,5 @@
 const client_id = process.env.REACT_APP_CLIENT_ID;
-const redirect_uri = "http://localhost:3000/";
+const redirect_uri = "https://moodlist.netlify.app/";
 const base_uri = "https://accounts.spotify.com/authorize";
 const scopes = ["user-top-read", "user-read-email", "user-read-private"];
 const joiner = "%20";
