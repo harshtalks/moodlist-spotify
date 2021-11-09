@@ -35,9 +35,9 @@ const Dashboard = ({ user, spotify }) => {
 
   const returnTime = () => {
     if (!time) return null;
-    else if (time === "short_term") return "weekly";
-    else if (time === "medium_term") return "monthly";
-    else if (time === "long_term") return "half yearly";
+    else if (time === "short_term") return "Weekly";
+    else if (time === "medium_term") return "Monthly";
+    else if (time === "long_term") return "Half yearly";
   };
 
   const returnDate = () => {
@@ -118,6 +118,7 @@ const Dashboard = ({ user, spotify }) => {
             </div>
             <div className="date">{returnDate()}</div>
             <div className="name">moodlist.netlify.app</div>
+            <div className="heading">Grocery List Essentials</div>
           </UserList>
         )
       )}

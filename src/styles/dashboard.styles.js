@@ -216,4 +216,15 @@ export const UserList = styled.div`
     margin-top: 50px;
     opacity: 0.5;
   }
+
+  .heading {
+    font-family: "Fira Code", monospace;
+    font-size: 32px;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
 `;
