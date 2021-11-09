@@ -8,6 +8,7 @@ import {
 import useData from "../context/useData";
 import html2canvas from "html2canvas";
 import Loader from "./Loader";
+import Girl from "../avatar/girl.png";
 const timeLimit = [
   {
     id: 0,
@@ -53,7 +54,10 @@ const Dashboard = ({ user, spotify }) => {
     <Container>
       <LeftContainer>
         <UserProfile id="lol">
-          <img src={user.images[0].url} alt={`${user.display_name}`} />
+          <img
+            src={user.images[0] ? user.images[0].url : Girl}
+            alt={`${user.display_name}`}
+          />
           <h2>{user.display_name}</h2>
           <h4>{user.id}</h4>
           <h3 className="email">{user.email}</h3>

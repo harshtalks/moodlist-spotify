@@ -47,6 +47,10 @@ function App() {
     <>
       <Helmet>
         <title>Moodlist</title>
+        <meta
+          property="description"
+          content="Get your spotify top items in a beautiful grocery list."
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -69,7 +73,7 @@ function App() {
         <GlobalStyles />
         <Nav />
 
-        {user.display_name ? (
+        {user.email ? (
           <Dashboard user={user} spotify={spotifyWebApi} />
         ) : (
           <Home theme={theme} />
