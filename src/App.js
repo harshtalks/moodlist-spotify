@@ -20,6 +20,7 @@ function App() {
   const [theme] = useThemeContext();
   const [getToken, setGetToken] = useState("");
   const [user, getUser] = useState({});
+
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
@@ -74,7 +75,7 @@ function App() {
         <Nav />
 
         {user.email ? (
-          <Dashboard user={user} spotify={spotifyWebApi} />
+          <Dashboard user={user} spotify={spotifyWebApi} token={getToken} />
         ) : (
           <Home theme={theme} />
         )}

@@ -4,7 +4,9 @@ import {
   LeftContainer,
   UserProfile,
   UserList,
+  RecommendList,
 } from "../styles/dashboard.styles";
+import Recom from "../svg/recom.png";
 import useData from "../context/useData";
 import html2canvas from "html2canvas";
 import Loader from "./Loader";
@@ -29,10 +31,11 @@ const timeLimit = [
     text: "half yearly",
   },
 ];
-const Dashboard = ({ user, spotify }) => {
+const Dashboard = ({ user, spotify, token }) => {
+  const [select, setSelect] = useState(null);
   const [startLoading, setStartLoading] = useState(false);
   const [time, setTime] = useState(null);
-  const { loading, data } = useData(time, spotify);
+  const { loading, data, songs } = useData(time, spotify);
 
   const returnTime = () => {
     if (!time) return null;
@@ -59,8 +62,28 @@ const Dashboard = ({ user, spotify }) => {
             alt={`${user.display_name}`}
           />
           <h2>{user.display_name}</h2>
-          <h4>{user.id}</h4>
+          <h4>@{user.id}</h4>
           <h3 className="email">{user.email}</h3>
+          <div className="switch">
+            <button
+              className={select === "past" ? "activeClass" : null}
+              onClick={(e) => {
+                setSelect("past");
+                setTime(null);
+              }}
+            >
+              Most Played Tracks
+            </button>
+            <button
+              className={select === "recommend" ? "activeClass" : null}
+              onClick={(e) => {
+                setSelect("recommend");
+                setTime(null);
+              }}
+            >
+              Get Recommendations
+            </button>
+          </div>
           <div className="buttons">
             {timeLimit.map((el) => {
               return (
@@ -78,7 +101,10 @@ const Dashboard = ({ user, spotify }) => {
             })}
           </div>
           <button
-            className="download"
+            disabled={time && startLoading && loading}
+            className={`download ${
+              time && startLoading && loading ? "disable" : null
+            }`}
             onClick={(e) => {
               e.preventDefault();
               html2canvas(document.getElementById("my-node")).then(function (
@@ -86,7 +112,7 @@ const Dashboard = ({ user, spotify }) => {
               ) {
                 var link = document.createElement("a");
                 document.body.appendChild(link);
-                link.download = "html_image.png";
+                link.download = "list-grocery.png";
                 link.href = canvas.toDataURL("image/png");
                 link.target = "_blank";
                 link.click();
@@ -97,35 +123,76 @@ const Dashboard = ({ user, spotify }) => {
           </button>
         </UserProfile>
       </LeftContainer>
-      {startLoading && loading ? (
-        <Loader />
-      ) : (
-        data.items && (
-          <UserList id="my-node">
-            <h1>
-              {user.display_name}'s <br /> {returnTime()} Must Haves
-            </h1>
-            <div className="songs">
-              {data.items.map((el) => {
-                return (
-                  <div key={el.id} className="each">
-                    <p className="song">
+
+      {select &&
+        (select === "past" ? (
+          time && startLoading && loading ? (
+            <Loader />
+          ) : (
+            data.items && (
+              <UserList id={select === "past" ? "my-node" : ""}>
+                <h1>
+                  {user.display_name}'s <br /> {returnTime()} Must Haves
+                </h1>
+                <div className="songs">
+                  {data.items.map((el) => {
+                    return (
+                      <div key={el.id} className="each">
+                        <p className="song">
+                          {el.name} -{" "}
+                          {el.artists.map((art) => (
+                            <span key={art.id}>{art.name}</span>
+                          ))}
+                        </p>
+                        <p>{el.popularity}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="date">{returnDate()}</div>
+                <div className="name">moodlist.netlify.app</div>
+                <div className="heading">Grocery List Essentials</div>
+              </UserList>
+            )
+          )
+        ) : time && loading && startLoading ? (
+          <Loader />
+        ) : (
+          songs.tracks && (
+            <RecommendList id={select === "recommend" ? "my-node" : ""}>
+              <div className="content">
+                <div className="title">
+                  <h1>Grocery List for {user.display_name}</h1>
+                </div>
+                {songs.tracks.map((el) => (
+                  <div className="song">
+                    <h2>
                       {el.name} -{" "}
-                      {el.artists.map((art) => (
-                        <span key={art.id}>{art.name}</span>
+                      {el.artists.map((x) => (
+                        <span className="artist">{x.name}</span>
                       ))}
-                    </p>
-                    <p>{el.popularity}</p>
+                    </h2>
+                    <span className="box"></span>
                   </div>
-                );
-              })}
-            </div>
-            <div className="date">{returnDate()}</div>
-            <div className="name">moodlist.netlify.app</div>
-            <div className="heading">Grocery List Essentials</div>
-          </UserList>
-        )
-      )}
+                ))}
+                <div className="footer">
+                  <div className="leftContainer">
+                    <img src={Recom} alt="recom" />
+                  </div>
+                  <div className="rightContainer">
+                    <div>
+                      {" "}
+                      <h2>{returnDate()}</h2>
+                    </div>
+                    <div>
+                      <h2>moodlist.netfliy.app</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </RecommendList>
+          )
+        ))}
     </Container>
   );
 };

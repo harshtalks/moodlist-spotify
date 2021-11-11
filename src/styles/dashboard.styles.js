@@ -58,7 +58,7 @@ export const UserProfile = styled.div`
   }
 
   h2 {
-    margin-top: 1em;
+    margin-top: 0.7em;
     font-size: 2rem;
     font-weight: 500;
   }
@@ -77,6 +77,48 @@ export const UserProfile = styled.div`
     border-radius: 5px;
   }
 
+  .switch {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .activeClass {
+      background: ${({ theme }) => theme.color};
+      color: ${({ theme }) => theme.background};
+    }
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
+    button {
+      outline: none;
+      background: none;
+      border: 2px solid ${({ theme }) => theme.color};
+      padding: 0.5em 0;
+      width: 250px;
+      margin-right: 1em;
+      cursor: pointer;
+      color: ${({ theme }) => theme.color};
+      transition: all 0.1s ease;
+
+      &:hover,
+      &:active {
+        background: ${({ theme }) => theme.color};
+        color: ${({ theme }) => theme.background};
+      }
+
+      @media (max-width: 500px) {
+        margin-right: 0;
+        margin-bottom: 0.5em;
+        font-size: 1em;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
   .buttons {
     display: flex;
     align-items: center;
@@ -86,13 +128,21 @@ export const UserProfile = styled.div`
     }
     button {
       padding: 8px 12px;
-      margin: 10px 10px;
+      margin: 5px 10px;
       outline: none;
-      border-radius: 8px;
       border: none;
+      opacity: 0.9;
+      background-color: ${({ theme }) => theme.background};
+      color: ${({ theme }) => theme.color};
+
+      &:hover,
+      &:active {
+        opacity: 1;
+      }
 
       &.active {
-        opacity: 0.5;
+        background-color: ${({ theme }) => theme.color};
+        color: ${({ theme }) => theme.background};
       }
       @media (max-width: 768px) {
         font-size: 0.9rem;
@@ -100,16 +150,11 @@ export const UserProfile = styled.div`
       @media (max-width: 500px) {
         width: 60vw;
         font-size: 1rem;
+        margin-bottom: 0.2rm;
       }
-      background: ${({ theme }) => theme.color};
+
       font-size: 1.2rem;
       cursor: pointer;
-      color: ${({ theme }) => theme.imageBg};
-
-      &:hover,
-      &:focus {
-        color: ${({ theme }) => theme.background};
-      }
     }
   }
 
@@ -121,7 +166,12 @@ export const UserProfile = styled.div`
     padding: 0.5em 1em;
     outline: none;
     border: none;
-    border-radius: 8px;
+    margin-top: 5px;
+    transition: all 0.25s ease;
+    &:hover,
+    &:active {
+      transform: scale(1.01);
+    }
     @media (max-width: 768px) {
       font-size: 1rem;
     }
@@ -129,6 +179,9 @@ export const UserProfile = styled.div`
       width: 60vw;
       font-size: 1.2rem;
     }
+  }
+  .disable {
+    opacity: 0.5;
   }
 `;
 
@@ -145,6 +198,7 @@ export const UserList = styled.div`
   transform-origin: center;
   color: black;
   padding: 100px 90px;
+  padding-top: 80px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   @media (max-width: 1024px) {
     top: -10%;
@@ -152,14 +206,15 @@ export const UserList = styled.div`
 
   @media (max-width: 500px) {
     margin-top: 32px;
-    top: -15%;
+    top: -10%;
   }
 
   h1 {
     font-family: "Fira Code", monospace;
     font-size: 65px;
     line-height: 1.4;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
+    margin-top: 0;
   }
 
   .songs {
@@ -209,12 +264,13 @@ export const UserList = styled.div`
   }
 
   .name {
-    font-size: 70px;
+    font-size: 50px;
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
     margin-top: 50px;
-    opacity: 0.5;
+    opacity: 0.4;
+    font-weight: 200;
   }
 
   .heading {
@@ -226,5 +282,130 @@ export const UserList = styled.div`
     transform: translate(-50%, -50%);
     opacity: 0.7;
     text-transform: uppercase;
+  }
+`;
+
+export const RecommendList = styled.div`
+  background: #f2e6da;
+  margin: 0 auto;
+  width: 1080px;
+  min-height: 1920px;
+  height: fit-content;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transform: scale(0.3);
+  top: -20%;
+  transform-origin: center;
+  color: black;
+  padding: 100px 90px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  @media (max-width: 1024px) {
+    top: -10%;
+  }
+
+  @media (max-width: 500px) {
+    margin-top: 32px;
+    top: -12%;
+  }
+
+  padding: 70px;
+  .content {
+    border: 1px solid black;
+
+    .title {
+      border-bottom: 1px solid black;
+      h1 {
+        font-size: 50px;
+        font-family: Poppins;
+        padding: 50px 20px;
+        font-weight: 200;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    .footer {
+      display: flex;
+      height: 200px;
+      justify-content: space-between;
+      .leftContainer {
+        width: 20%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      .rightContainer {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-left: 1px solid black;
+
+        div {
+          border-bottom: 1px solid black;
+          height: 50%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: end;
+
+          &:last-of-type {
+            border: none;
+          }
+
+          h2 {
+            font-size: 32px;
+            font-family: "Fira Code", monospace;
+            text-transform: uppercase;
+            margin: 0 20px;
+            font-weight: 200;
+          }
+        }
+      }
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+      border-bottom: 1px solid black;
+
+      h2 {
+        padding-left: 20px;
+        font-size: 28px;
+        font-family: "Fira Code", monospace;
+        width: 80%;
+        line-height: 1.4;
+
+        span {
+          &::after {
+            content: ", ";
+          }
+
+          &:last-of-type {
+            margin-right: 0;
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .box {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        display: block;
+        margin-right: 20px;
+      }
+    }
   }
 `;
