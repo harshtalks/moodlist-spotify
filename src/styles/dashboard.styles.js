@@ -25,6 +25,8 @@ export const LeftContainer = styled.div`
 export const RightContainer = styled.div``;
 
 export const UserProfile = styled.div`
+  position: static;
+  z-index: 1000;
   width: 80%;
   height: fit-content;
   margin: 0 auto;
@@ -38,6 +40,8 @@ export const UserProfile = styled.div`
   border-bottom: 5px solid #56ab2f; //fallback;
   border-bottom: 5px solid -webkit-linear-gradient(to right, #56ab2f, #a8e063); /* Chrome 10-25, Safari 5.1-6 */
   border-bottom: 5px solid linear-gradient(to right, #56ab2f, #a8e063); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
   @media (max-width: 1024px) {
     justify-content: start;
     margin-top: 12vh;
@@ -243,6 +247,17 @@ export const UserList = styled.div`
       text-transform: uppercase;
       font-weight: bold;
       margin-top: 20px;
+    }
+
+    @media (max-width: 500px) {
+      padding-top: 0;
+      h1 {
+        font-size: 80px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 80px;
+        margin-top: 0;
+      }
     }
   }
 

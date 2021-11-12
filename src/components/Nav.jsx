@@ -1,6 +1,6 @@
 import React from "react";
 import spotify from "../images/spotify_g.png";
-import { Container, NavBar, Logo, Menu } from "../styles/nav.styles";
+import { Container, NavBar, Logo } from "../styles/nav.styles";
 import { useThemeContext } from "../context/useThemeContext";
 
 const Nav = () => {
@@ -19,10 +19,6 @@ const Nav = () => {
           <img src={spotify} alt="sp-green" />
           <p>dList</p>
         </Logo>
-        <Menu>
-          <span></span>
-          <span></span>
-        </Menu>
       </NavBar>
     </Container>
   );

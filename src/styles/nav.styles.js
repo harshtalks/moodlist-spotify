@@ -48,23 +48,3 @@ export const Logo = styled.div`
     margin: 0 0.2em;
   }
 `;
-
-export const Menu = styled.div`
-  opacity: 0.7;
-  &:hover,
-  &:active {
-    opacity: 1;
-  }
-  cursor: pointer;
-  span {
-    display: block;
-    width: 2rem;
-    height: 3px;
-    margin-bottom: 0.4em;
-    background: ${({ theme }) => theme.color};
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-`;
