@@ -6,6 +6,7 @@ export const Container = styled.div`
   left: 0;
   height: 8vh;
   width: 100%;
+  z-index: 1000;
   border-top: 5px solid #56ab2f; //fallback;
   border-top: 5px solid -webkit-linear-gradient(to right, #56ab2f, #a8e063); /* Chrome 10-25, Safari 5.1-6 */
   border-top: 5px solid linear-gradient(to right, #56ab2f, #a8e063); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ ;

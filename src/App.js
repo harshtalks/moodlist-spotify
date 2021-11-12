@@ -72,6 +72,7 @@ function App() {
       </Helmet>
       <ThemeProvider theme={theme === "dark" ? DarkTheme : LightTheme}>
         <GlobalStyles />
+
         <Nav />
 
         {user.email ? (

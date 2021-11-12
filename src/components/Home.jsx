@@ -25,7 +25,7 @@ const Home = ({ theme }) => {
           Moodlist <span>Spotify</span>
         </Headline>
         <SubHead>
-          Get your spotify top items <br />
+          Get your spotify top recommends <br />
           in a beautiful grocery list.
         </SubHead>
         <Button onClick={loginAction}>

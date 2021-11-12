@@ -11,6 +11,7 @@ import useData from "../context/useData";
 import html2canvas from "html2canvas";
 import Loader from "./Loader";
 import Girl from "../avatar/girl.png";
+import BarCode from "../svg/barcode.png";
 const timeLimit = [
   {
     id: 0,
@@ -51,6 +52,13 @@ const Dashboard = ({ user, spotify, token }) => {
     const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
+  };
+
+  const sum = (data) => {
+    const arraySum = data.items.map((el) => el.popularity);
+    const total = arraySum.reduce((ac, current) => ac + current, 0);
+
+    return total;
   };
 
   return (
@@ -131,9 +139,33 @@ const Dashboard = ({ user, spotify, token }) => {
           ) : (
             data.items && (
               <UserList id={select === "past" ? "my-node" : ""}>
-                <h1>
-                  {user.display_name}'s <br /> {returnTime()} Must Haves
-                </h1>
+                <div className="top">
+                  <h1>Cash Reciept</h1>
+                  <p>{returnTime()}</p>
+                  <h3>Moodlist.netlify.app</h3>
+                </div>
+                <div className="buyer">
+                  <div className="detail">
+                    <p>Name:</p>
+                    {user.display_name && <p>{user.display_name}</p>}
+                  </div>
+                  <div className="detail">
+                    <p>TEL:</p>
+                    <p>0987 123 890 5678</p>
+                  </div>
+                  <div className="detail">
+                    <p>Date:</p>
+                    <p>{returnDate()}</p>
+                  </div>
+                  <div className="detail">
+                    <p>Manager:</p>
+                    {data.items[0] ? (
+                      <p>{data.items[0].artists[0].name}</p>
+                    ) : (
+                      <p>Harsh Pareek</p>
+                    )}
+                  </div>
+                </div>
                 <div className="songs">
                   {data.items.map((el) => {
                     return (
@@ -144,14 +176,33 @@ const Dashboard = ({ user, spotify, token }) => {
                             <span key={art.id}>{art.name}</span>
                           ))}
                         </p>
-                        <p>{el.popularity}</p>
+                        <p>${el.popularity}.00</p>
                       </div>
                     );
                   })}
                 </div>
-                <div className="date">{returnDate()}</div>
-                <div className="name">moodlist.netlify.app</div>
-                <div className="heading">Grocery List Essentials</div>
+                <div className="total">
+                  <div className="detail">
+                    <p>Price:</p>
+                    <p>${sum(data)}.00</p>
+                  </div>
+                  <div className="detail">
+                    <p>Sale:</p>
+                    <p>00.00</p>
+                  </div>
+                  <div className="detail">
+                    <p>VAT:</p>
+                    <p>2.55</p>
+                  </div>
+                </div>
+                <div className="finalSum">
+                  <p>Total:</p>
+                  <p>${sum(data) + 2.55}</p>
+                </div>
+                <div className="thanks">
+                  <h1>Thank You!</h1>
+                  <img src={BarCode} alt="barcode" />
+                </div>
               </UserList>
             )
           )

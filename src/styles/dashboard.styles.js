@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Paper from "../images/paper.jpg";
 
 export const Container = styled.div`
   width: 100vw;
@@ -187,46 +188,146 @@ export const UserProfile = styled.div`
 
 export const UserList = styled.div`
   margin: 0 auto;
-  width: 1080px;
-  min-height: 1920px;
+  width: 1000px;
+  min-height: 2200px;
   height: fit-content;
-  background: #eeeee6;
+  background: white;
   position: absolute;
   transform: translate(-50%, -50%);
   transform: scale(0.3);
-  top: -20%;
+  background: url(${Paper});
+  background-position: cover;
+  background-repeat: no-repeat;
+  padding: 40px 70px;
+  top: -40%;
   transform-origin: center;
   color: black;
-  padding: 100px 90px;
-  padding-top: 80px;
+
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   @media (max-width: 1024px) {
-    top: -10%;
+    top: -20%;
+  }
+
+  @media (max-width: 768px) {
+    top: -30%;
   }
 
   @media (max-width: 500px) {
     margin-top: 32px;
-    top: -10%;
+    top: -30%;
   }
 
-  h1 {
-    font-family: "Fira Code", monospace;
-    font-size: 65px;
-    line-height: 1.4;
-    margin-bottom: 70px;
-    margin-top: 0;
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0.7;
+    padding: 50px 0;
+    border-bottom: 4px dotted black;
+    h1 {
+      font-size: 80px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 32px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    h3 {
+      font-size: 40px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  }
+
+  .buyer {
+    margin: 20px 0;
+    border-bottom: 4px dotted black;
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      &:last-of-type {
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 40px;
+        font-family: "Fira Code", monospace;
+      }
+    }
+  }
+
+  .total {
+    margin: 20px 0;
+    border-bottom: 4px dotted black;
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      &:last-of-type {
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 40px;
+        font-family: "Fira Code", monospace;
+      }
+    }
+  }
+
+  .finalSum {
+    margin: 20px 0;
+    border-bottom: 4px dotted black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+
+    p {
+      font-size: 40px;
+      font-family: "Fira Code", monospace;
+    }
+  }
+
+  .thanks {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 60px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+    img {
+      margin: 0 auto;
+      width: 80%;
+      opacity: 0.7;
+    }
   }
 
   .songs {
-    border-top: 6px dotted black;
-    border-bottom: 6px dotted black;
     margin-top: 40px;
     padding: 40px 0;
+    border-bottom: 4px dotted black;
 
     .each {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       font-size: 32px;
       line-height: 1.4;
 
