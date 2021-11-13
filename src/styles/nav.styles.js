@@ -43,8 +43,13 @@ export const Logo = styled.div`
                                   supported by Chrome, Edge, Opera and Firefox */
   }
 
-  img {
+  span {
     width: 1.5rem;
-    margin: 0 0.2em;
+    height: 1.5rem;
+    display: inline-block;
+    margin: 0em 0.2em;
+    transform: translateY(2px);
+    background: #1db954;
+    border-radius: 50%;
   }
 `;

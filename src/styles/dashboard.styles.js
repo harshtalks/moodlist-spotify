@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Paper from "../images/paper.jpg";
 
 export const Container = styled.div`
   width: 100vw;
@@ -199,9 +198,13 @@ export const UserList = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
   transform: scale(0.3);
-  background: url(${Paper});
-  background-position: cover;
-  background-repeat: no-repeat;
+  overflow: hidden;
+  .paper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
   padding: 40px 70px;
   top: -40%;
   transform-origin: center;
@@ -226,16 +229,18 @@ export const UserList = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    opacity: 0.7;
+    opacity: 1;
     padding: 50px 0;
     border-bottom: 4px dotted black;
     h1 {
+      opacity: 0.6;
       font-size: 80px;
       text-transform: uppercase;
       font-weight: bold;
     }
 
     p {
+      opacity: 0.6;
       font-size: 32px;
       text-transform: uppercase;
       font-weight: bold;
@@ -243,6 +248,7 @@ export const UserList = styled.div`
     }
 
     h3 {
+      opacity: 0.6;
       font-size: 40px;
       text-transform: uppercase;
       font-weight: bold;
@@ -251,6 +257,7 @@ export const UserList = styled.div`
 
     @media (max-width: 500px) {
       padding-top: 0;
+
       h1 {
         font-size: 80px;
         text-transform: uppercase;
@@ -262,6 +269,7 @@ export const UserList = styled.div`
   }
 
   .buyer {
+    opacity: 0.7;
     margin: 20px 0;
     border-bottom: 4px dotted black;
     .detail {
@@ -322,12 +330,14 @@ export const UserList = styled.div`
     flex-direction: column;
 
     h1 {
+      opacity: 0.7;
       font-size: 60px;
       font-weight: bold;
       text-transform: uppercase;
       margin: 10px 0;
     }
     img {
+      opacity: 0.4;
       margin: 0 auto;
       width: 80%;
       opacity: 0.7;

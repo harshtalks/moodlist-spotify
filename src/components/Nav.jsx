@@ -1,5 +1,4 @@
 import React from "react";
-import spotify from "../images/spotify_g.png";
 import { Container, NavBar, Logo } from "../styles/nav.styles";
 import { useThemeContext } from "../context/useThemeContext";
 
@@ -16,7 +15,7 @@ const Nav = () => {
       <NavBar>
         <Logo onClick={toggleTheme}>
           <p>Mo</p>
-          <img src={spotify} alt="sp-green" />
+          <span></span>
           <p>dList</p>
         </Logo>
       </NavBar>

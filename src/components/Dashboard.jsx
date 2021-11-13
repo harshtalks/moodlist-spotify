@@ -12,6 +12,7 @@ import html2canvas from "html2canvas";
 import Loader from "./Loader";
 import Girl from "../avatar/girl.png";
 import BarCode from "../svg/barcode.png";
+import Paper from "../images/paper-1.jpg";
 const timeLimit = [
   {
     id: 0,
@@ -203,6 +204,7 @@ const Dashboard = ({ user, spotify, token }) => {
                   <h1>Thank You!</h1>
                   <img src={BarCode} alt="barcode" />
                 </div>
+                <img class="paper" src={Paper} alt="paper" />
               </UserList>
             )
           )
